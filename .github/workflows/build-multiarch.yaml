@@ -1,7 +1,6 @@
 name: BuildContainerImage
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - 'master'
