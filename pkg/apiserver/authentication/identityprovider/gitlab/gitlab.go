@@ -133,8 +133,9 @@ func (g gitlabIdentity) GetEmail() string {
 }
 
 // 请求oauth2服务端,反序列化用户信息
-func (g *gitlab) IdentityExchange(code string) (identityprovider.Identity, error) {
-	ctx := context.TODO()
+func (g *gitlab) IdentityExchangeCallback(req *http.Request) (identityprovider.Identity, error) {
+	code := req.URL.Query().Get("code")
+	ctx := req.Context()
 	if g.InsecureSkipVerify {
 		client := &http.Client{
 			Transport: &http.Transport{
